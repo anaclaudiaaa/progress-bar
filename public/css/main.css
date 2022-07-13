@@ -1,0 +1,100 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  color: #060E9F;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 700;
+}
+
+h3 {
+  color: #060E9F;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+h4 {
+  color: #060E9F;
+  text-align: center;
+  font-size: 18px;
+}
+
+p {
+  padding-top: 5%;
+  font-weight: 600;
+  text-align: left;
+}
+
+.done p {
+  color: #00033A;
+}
+
+.todo p {
+  color: #C3C3C3;
+  opacity: 50%;
+}
+
+.header {
+  position: absolute;
+  top: 5%;
+  left: 7%;
+}
+
+.main {
+  position: absolute;
+  top: 18%;
+  left: 7%;
+}
+
+.conclusion {
+  padding-top: 5%;
+}
+
+.image-tree {
+  width: 50px;
+  display: block;
+  margin-left: 1075px;
+  margin-bottom: -2%;
+}
+
+.image-helica {
+  width: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gatherInfo {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 1150px;
+  margin-left: 12%;
+  position: relative;
+}
+
+.date {
+  position: absolute;
+  bottom: 0;
+  text-align: left;
+}
+
+.info {
+  max-width: 15%;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vl-done {
+  border-left: 1px dashed #00033A;
+  height: 50px;
+}
+
+.vl-todo {
+  border-left: 1px dashed #C3C3C3;
+  height: 50px;
+  opacity: 50%;
+}
+/*# sourceMappingURL=main.css.map */
