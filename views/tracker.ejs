@@ -11,7 +11,7 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -20,59 +20,142 @@
         <image href="/img/helica-earth.svg">
     </svg> -->
     <div class="container-flex header">
-        <img class = "logo" src="/img/helica_principal.jpg">
+        <img class = "logo" href="/" src="/img/helica_principal.jpg">
     </div>
-    
     <div class="container title main">
         <div class="row ">
             <div class="col">
                 <h1>Vê o progresso da tua instalação</h1>
-                <h4>Obra: XJSDJKSLJLS</h4>
+                <h4>Obra: <%= tracking.workName %></h4>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <img class = "image-tree" src="/img/tree1.png">
+                <img id="image-tree" src="/img/tree1.png">
             </div>
         </div>
-        <div class="row image-helica">
+        <!-- <div class="row">
             <div class="col">
                 <img class ="image-helica" src="/img/helica-earth.png">
             </div>
+        </div> -->
+        <div class="row">
+            <div class="col">
+                <% switch (Number(tracking.phase)) {
+                    case 1: %>
+                        <img class ="image-helica" src="/img/helica-1.png">
+                        <% break;
+                    case 2: %>
+                        <img class ="image-helica" src="/img/helica-2.png">
+                        <% break;
+                    case 3: %>
+                        <img class ="image-helica" src="/img/helica-3.png">
+                        <% break;
+                    case 4: %>
+                        <img class ="image-helica" src="/img/helica-4.png">
+                        <% break;
+                    default: %>
+                        <img class ="image-helica" src="/img/helica-0.png">
+                <% } %>          
+            </div>
         </div>
         <div class="row gatherInfo ">
-            <div class="col-md-4 .mx-auto info done">
-                <div class="vl-done"></div>
-                <p>Foi recebida a informação da obra. Vamos analisar!</p>
-                <p id="date">27/05</p>
+            <div class="col-md-4 .mx-auto info todo" id="phase0">
+                <div class="vl-todo" id="vl-phase0"></div>
+                <p>Obrigado por escolheres Helica! Estamos a trabalhar na tua obra.</p>
+                <% let date0 = new Date(tracking.date0).toLocaleDateString("pt-PT") %>
+                <p id="date"><%= date0 %></p>
             </div>
-            <div class="col-md-4 .mx-auto info done">
-                <div class="vl-done"></div>
-                <p>Análise concluída. O orçamento já foi enviado</p>
-                <p id="date">30/05</p>
+            <div class="col-md-4 .mx-auto info todo" id="phase1">
+                <div class="vl-todo" id="vl-phase1"></div>
+                <p>As Helica estão prontas para serem transportadas para o local da obra.</p>
+                <% let date1 = new Date(tracking.date1).toLocaleDateString("pt-PT") %>
+                <p id="date"><%= date1 %></p>
             </div>
-            <div class="col-md-4 .mx-auto info todo">
-                <div class="vl-todo"></div>
-                <p>Estamos a preparar os elementos da instalação</p>
-                <p id="date"></p>
+            <div class="col-md-4 .mx-auto info todo" id="phase2">
+                <div class="vl-todo" id="vl-phase2"></div>
+                <p>O transporte foi efectuado. As Helica estão prontas para a instalação!</p>
+                <% let date2 = new Date(tracking.date2).toLocaleDateString("pt-PT") %>
+                <p id="date"><%= date2 %></p>
             </div>
-            <div class="col-md-4 .mx-auto info todo">
-                <div class="vl-todo"></div>
-                <p>Está tudo preparado! A instalação decorrerá no dia definido</p>
-                <p id="date"></p>
+            <div class="col-md-4 .mx-auto info todo" id="phase3">
+                <div class="vl-todo" id="vl-phase3"></div> 
+                <p>A tua instalação foi feita com sucesso! Podes ver <a id="photoLink" target="_blank" href="javascript: void(0)">aqui</a> as tuas Helica.</p>
+                <% let date3 = new Date(tracking.date3).toLocaleDateString("pt-PT") %>
+                <p id="date"><%= date3 %></p>
             </div>
-            <div class="col-md-4 .mx-auto info todo">
-                <div class="vl-todo"></div>
-                <p>Instalação feita com sucesso! Vê aqui as tuas Helica</p>
-                <p id="date"></p>
+            <div class="col-md-4 .mx-auto info todo" id="phase4">
+                <div class="vl-todo" id="vl-phase4"></div>
+                <p>O prometido é devido e por isso as <%= tracking.trees %> árvores da tua obra foram plantadas.</p>
+                <% let date4 = new Date(tracking.date4).toLocaleDateString("pt-PT") %>
+                <p id="date"><%= date4 %></p>
             </div>
         </div>
         <div class="row conclusion">
             <div class="col">
-                <h3>A tua instalação será feita a 22/07/2022 <br>Faltam 28 dias!</h1>
+                <% let date5 = new Date(tracking.date5).toLocaleDateString("pt-PT");
+
+                let dateOfConstruction = new Date(tracking.date5);
+                let now = new Date();
+
+                let howMuchTime = dateOfConstruction.getTime() - now.getTime();
+                let howManyDays = Math.round(howMuchTime/(1000*3600*24)); %>
+
+                <h3>A tua instalação pode ser feita a partir de <%= date5 %>. <br>Faltam <%= howManyDays %> dias!</h1>
             </div>
         </div>
     </div>
+
+    <script>
+        let phase = Number(<%= tracking.phase %>);
+
+        switch (phase) {
+            case 0:
+                document.getElementById('phase0').classList.replace('todo', 'done');
+                document.getElementById('vl-phase0').classList.replace('vl-todo', 'vl-done');
+                break;
+            case 1:
+                document.getElementById('phase0').classList.replace('todo', 'done');
+                document.getElementById('vl-phase0').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase1').classList.replace('todo', 'done');
+                document.getElementById('vl-phase1').classList.replace('vl-todo', 'vl-done');
+                break;
+            case 2:
+                document.getElementById('phase0').classList.replace('todo', 'done');
+                document.getElementById('vl-phase0').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase1').classList.replace('todo', 'done');
+                document.getElementById('vl-phase1').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase2').classList.replace('todo', 'done');
+                document.getElementById('vl-phase2').classList.replace('vl-todo', 'vl-done');
+                break;
+            case 3:
+                document.getElementById('phase0').classList.replace('todo', 'done');
+                document.getElementById('vl-phase0').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase1').classList.replace('todo', 'done');
+                document.getElementById('vl-phase1').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase2').classList.replace('todo', 'done');
+                document.getElementById('vl-phase2').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase3').classList.replace('todo', 'done');
+                document.getElementById('vl-phase3').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('photoLink').setAttribute('href', "<%= tracking.photoLink %>");
+                break;
+            case 4:
+                document.getElementById('phase0').classList.replace('todo', 'done');
+                document.getElementById('vl-phase0').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase1').classList.replace('todo', 'done');
+                document.getElementById('vl-phase1').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase2').classList.replace('todo', 'done');
+                document.getElementById('vl-phase2').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase3').classList.replace('todo', 'done');
+                document.getElementById('vl-phase3').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('phase4').classList.replace('todo', 'done');
+                document.getElementById('vl-phase4').classList.replace('vl-todo', 'vl-done');
+                document.getElementById('photoLink').setAttribute('href', "<%= tracking.photoLink %>");
+                break;
+        }
+        
+    
+    </script>
 
     
 </body>
